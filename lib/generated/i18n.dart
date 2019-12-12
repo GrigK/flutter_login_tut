@@ -22,6 +22,7 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get appName => "Flutter";
+  String get btnLogout => "Logout";
   String get splashS => "Splash Screen";
   String get titleHomePage => "Title home page";
 }
@@ -34,6 +35,8 @@ class $ru extends S {
 
   @override
   String get titleHomePage => "Название домашней страницы";
+  @override
+  String get btnLogout => "Выйти";
   @override
   String get appName => "Флаттер";
   @override
