@@ -24,16 +24,14 @@ class LoginPage extends StatelessWidget {
         // используем BlocProvider для создания,
         // закрытия и предоставления LoginFormBloc для поддерева
         body: BlocProvider(
-            create: (context) {
-              // используем UserRepository для создания LoginFormBloc
-              return LoginFormBloc(
+          create: (context) {
+            // используем UserRepository для создания LoginFormBloc
+            return LoginFormBloc(
                 userRepository: userRepository,
                 // в LoginFormBloc нужен доступ к LoginBloc
-                loginBloc: BlocProvider.of<LoginBloc>(context)
-              );
-            },
+                loginBloc: BlocProvider.of<LoginBloc>(context));
+          },
           child: LoginForm(),
-        )
-    );
+        ));
   }
 }

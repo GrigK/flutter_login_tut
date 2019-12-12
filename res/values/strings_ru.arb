@@ -3,5 +3,9 @@
   "titleHomePage": "Название домашней страницы",
   "splashS": "Заставка",
   "btnLogout": "Выйти",
-  "loginTitle": "Авторизация"
+  "loginTitle": "Авторизация",
+
+  "labelLogin": "имя",
+  "labelPass": "пароль",
+  "btnLogin": "Войти"
 }

@@ -3,5 +3,9 @@
   "titleHomePage": "Title home page",
   "splashS": "Splash Screen",
   "btnLogout": "Logout",
-  "loginTitle": "Login"
+  "loginTitle": "Login",
+
+  "labelLogin": "login",
+  "labelPass": "password",
+  "btnLogin": "Login"
 }

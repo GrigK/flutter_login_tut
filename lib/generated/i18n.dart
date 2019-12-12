@@ -22,7 +22,10 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get appName => "Flutter";
+  String get btnLogin => "Login";
   String get btnLogout => "Logout";
+  String get labelLogin => "login";
+  String get labelPass => "password";
   String get loginTitle => "Login";
   String get splashS => "Splash Screen";
   String get titleHomePage => "Title home page";
@@ -35,9 +38,15 @@ class $ru extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
+  String get labelPass => "пароль";
+  @override
   String get titleHomePage => "Название домашней страницы";
   @override
   String get btnLogout => "Выйти";
+  @override
+  String get btnLogin => "Войти";
+  @override
+  String get labelLogin => "имя";
   @override
   String get appName => "Флаттер";
   @override
