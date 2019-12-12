@@ -8,17 +8,36 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './generated/i18n.dart';
 import './src/blocks/simple_bloc_delegate.dart';
 import './src/blocks/theme_block.dart';
-import './src/blocks/home_page/bloc.dart';
 
 import './src/pages/home_page.dart';
+import './src/pages/splash_page.dart';
+import './src/pages/login_page.dart';
+import './src/pages/widgets/loaging_indicator.dart';
+
+import 'package:flutter_login_tut/src/resources/user_repository.dart';
+import 'package:flutter_login_tut/src/blocks/login_page/bloc.dart';
 
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  return runApp(MyApp());
+  final userRepository = UserRepository();
+
+  return runApp(
+    BlocProvider(
+        create: (context){
+          return LoginBloc(userRepository: userRepository)
+          ..add(AppStartedEvent());
+        },
+        child: MyApp(userRepository: userRepository,) ,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+  final UserRepository userRepository;
+
+  const MyApp({Key key, this.userRepository}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
@@ -39,17 +58,31 @@ class MyApp extends StatelessWidget {
 //            localeResolutionCallback: S.delegate.resolution(fallback: new Locale("en", "")),
 
             onGenerateTitle: (context) => S.of(context).appName,
-            home: BlocProvider(
-              // пример реализации [create]:
-//              create: (context) => TimerBloc(context, ticker: Ticker()),
-//              create: (context) => PostBloc(httpClient: http.Client())..add(FetchEvent()),
-              create: (context) => HomePageBloc(),
-              child: HomePage(),
-            ),
+            home: _routePages(context),
             theme: theme,
           );
         },
       ),
     );
+  }
+
+  Widget _routePages(BuildContext context){
+    return BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          if (state is LoginUninitializedState) {
+            return SplashPage();
+          }
+          if (state is LoginAuthenticatedState) {
+            return HomePage();
+          }
+          if (state is LoginUnauthenticatedState) {
+            return LoginPage(userRepository: userRepository);
+          }
+          if (state is LoginLoadingState) {
+            return LoadingIndicator();
+          }
+          return Container();
+        },
+      );
   }
 }
