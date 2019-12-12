@@ -2,5 +2,6 @@
   "appName": "Flutter",
   "titleHomePage": "Title home page",
   "splashS": "Splash Screen",
-  "btnLogout": "Logout"
+  "btnLogout": "Logout",
+  "loginTitle": "Login"
 }

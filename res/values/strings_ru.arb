@@ -2,5 +2,6 @@
   "appName": "Флаттер",
   "titleHomePage": "Название домашней страницы",
   "splashS": "Заставка",
-  "btnLogout": "Выйти"
+  "btnLogout": "Выйти",
+  "loginTitle": "Авторизация"
 }
