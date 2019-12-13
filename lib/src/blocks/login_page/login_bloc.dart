@@ -29,6 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoggedInEvent) {
       yield LoginLoadingState();
       await userRepository.persistToken(event.token);
+      yield LoginAuthenticatedState();
     }
 
     if (event is LoggedOutEvent) {

@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
         ),
         // используем BlocProvider для создания,
         // закрытия и предоставления LoginFormBloc для поддерева
-        body: BlocProvider(
+        body: BlocProvider<LoginFormBloc>(
           create: (context) {
             // используем UserRepository для создания LoginFormBloc
             return LoginFormBloc(
