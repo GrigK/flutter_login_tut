@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_login_tut/src/pages/loading_page.dart';
 
 import './generated/i18n.dart';
 import './src/blocks/simple_bloc_delegate.dart';
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
             return LoginPage(userRepository: userRepository);
           }
           if (state is LoginLoadingState) {
-            return LoadingIndicator();
+            return LoadingPage();
           }
           return Container();
         },
