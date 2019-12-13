@@ -15,19 +15,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomePageBloc _homeBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _homeBloc = BlocProvider.of<HomePageBloc>(context);
-  }
+// //  в случае усложнения структуры страницы могут понадобиться:
+//  @override
+//  void initState() {
+//    super.initState();
+//  }
+//
+//  @override
+//  void dispose() {
+//    super.dispose();
+//  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context),
-      body: BlocBuilder<HomePageBloc, HomePageState>(builder: _body),
+        appBar: _appBar(context),
+        body: _provider(context)
+
     );
   }
 
@@ -48,22 +52,34 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _body(BuildContext context, HomePageState state) {
-    // обработчики состояний:
-//    if (state is InitialHomePageState) {
-      return Container(
-          child: Center(
-        child:
-            RaisedButton(
-                child: Text(S.of(context).btnLogout),
-                onPressed: (){
-                  BlocProvider.of<LoginBloc>(context).add(LoggedOutEvent());
-                }),
-      ));
-//    }
+  Widget _provider(BuildContext context){
+    return BlocProvider<HomePageBloc>(
+      create: (context) => HomePageBloc(),
+      child: BlocBuilder<HomePageBloc, HomePageState>(
+          builder: _bodyState),
+    );
+  }
 
-//    return Center(
-//      child: Text('Not state BLoC'),
-//    );
+
+  Widget _bodyState(BuildContext context, HomePageState state) {
+    // обработчики состояний:
+    if (state is InitialHomePageState) {
+      return _clearBody(context);
+    }
+
+    return Center(
+      child: Text('Not state BLoC'),
+    );
+  }
+
+  Widget _clearBody(BuildContext context){
+    return Container(
+          child: Center(
+        child: RaisedButton(
+            child: Text(S.of(context).btnLogout),
+            onPressed: () {
+              BlocProvider.of<LoginBloc>(context).add(LoggedOutEvent());
+            }),
+      ));
   }
 }
