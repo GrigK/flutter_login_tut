@@ -28,11 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: _appBar(context),
-        body: _provider(context)
-
-    );
+    return Scaffold(appBar: _appBar(context), body: _provider(context));
   }
 
   AppBar _appBar(BuildContext context) {
@@ -52,14 +48,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _provider(BuildContext context){
+  Widget _provider(BuildContext context) {
     return BlocProvider<HomePageBloc>(
       create: (context) => HomePageBloc(),
-      child: BlocBuilder<HomePageBloc, HomePageState>(
-          builder: _bodyState),
+      child: BlocBuilder<HomePageBloc, HomePageState>(builder: _bodyState),
     );
   }
-
 
   Widget _bodyState(BuildContext context, HomePageState state) {
     // обработчики состояний:
@@ -72,14 +66,21 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _clearBody(BuildContext context){
+  Widget _clearBody(BuildContext context) {
     return Container(
-          child: Center(
-        child: RaisedButton(
-            child: Text(S.of(context).btnLogout),
-            onPressed: () {
-              BlocProvider.of<LoginBloc>(context).add(LoggedOutEvent());
-            }),
-      ));
+        child: Center(
+      child: /*ElevatedButton(
+        style: ElevatedButton.styleFrom(elevation: 12),
+        child: Text(S.of(context).btnLogout),
+        onPressed: () {
+            BlocProvider.of<LoginBloc>(context).add(LoggedOutEvent());
+          }),*/
+
+          RaisedButton(
+          child: Text(S.of(context).btnLogout),
+          onPressed: () {
+            BlocProvider.of<LoginBloc>(context).add(LoggedOutEvent());
+          }),
+    ));
   }
 }

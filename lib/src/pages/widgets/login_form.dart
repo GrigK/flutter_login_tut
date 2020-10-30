@@ -40,40 +40,46 @@ class _LoginFormState extends State<LoginForm> {
   Widget _loginFormBuilder({BuildContext context}) {
     return BlocBuilder<LoginFormBloc, LoginFormState>(
       builder: (context, state) {
-        return Container(
-          padding: EdgeInsets.all(20),
-          child: Form(
-              child: Column(
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: S.of(context).labelLogin),
-                controller: _usernameController,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: S.of(context).labelPass),
-                controller: _passwordController,
-                obscureText: true,
-              ),
-              SizedBox(height: 24.0,),
-              RaisedButton(
-                onPressed: state is! LoginFormLoadingState
-                    ? () {
-                        _onLoginBtnPressed(context);
-                      }
-                    : null,
-                child: Text(S.of(context).btnLogin),
-              ),
-              SizedBox(height: 24.0,),
-              Container(
-                child: state is LoginFormLoadingState
-                    ? LoadingIndicator()
-                    : null,
-              ),
-            ],
-          )),
+        return Center(
+          child: Container(
+            width: 200,
+            padding: EdgeInsets.all(20),
+            child: Form(
+                child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration:
+                      InputDecoration(labelText: S.of(context).labelLogin),
+                  controller: _usernameController,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: S.of(context).labelPass),
+                  controller: _passwordController,
+                  obscureText: true,
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                RaisedButton(
+                  onPressed: state is! LoginFormLoadingState
+                      ? () {
+                          _onLoginBtnPressed(context);
+                        }
+                      : null,
+                  child: Text(S.of(context).btnLogin),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  child:
+                      state is LoginFormLoadingState ? LoadingIndicator() : null,
+                ),
+              ],
+            )),
+          ),
         );
       },
     );
   }
-
 }
