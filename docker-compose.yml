@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1200:80"
+    image: flutter-login-test
+    container_name: flutter-login-test-container
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    #restart: always
+    #volumes:
+    #  - /usr/local/lib/python3.8
+    #  - ./logs:/app/logs
+    #  - ./data:/app/data
